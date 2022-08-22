@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import { TailwindProvider } from "tailwindcss-react-native";
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // Navigation
 import { NavigationContainer } from "@react-navigation/native";
@@ -13,7 +12,6 @@ import { Provider } from 'react-redux'
 import HomeScreen from './src/screens/HomeScreen';
 import EatScreen from './src/screens/EatScreen';
 import MapScreen from './src/screens/MapScreen';
-
 
 export default function App() {
 
