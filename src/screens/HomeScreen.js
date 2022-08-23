@@ -4,14 +4,14 @@ import NavOptions from '../components/NavOptions'
 // Google API
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 // API KEY from .env File
-import {GOOGLE_MAPS_APIKEY} from "@env"
+import { GOOGLE_MAPS_APIKEY } from "@env"
 // Redux
 import { useDispatch } from 'react-redux';
 import { setDestination, setOrigin } from '../../redux/slices/navSlice';
 
 const HomeScreen = () => {
 
-const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   return (
     <SafeAreaView className="bg-white h-full">
@@ -23,36 +23,38 @@ const dispatch = useDispatch()
           style={{ height: 100, width: 100, resizeMode: "contain" }}
         />
 
-        <GooglePlacesAutocomplete 
-        styles={{
-          container: {
-            flex: 0
-          },
-          textInput: {
-            fontSize: 18
-          }
-        }}
-        query={{
-          key: GOOGLE_MAPS_APIKEY,
-          language: "en"
-        }}
-        onPress={(data, details = null) => {
-          // dispatch(setOrigin({
-          //   // location: data.geometry.location,
-          //   // description: data.description
-          // }))
-          setDestination(null)
-          console.log(data);
-          console.log(details);
-          
-        }}
-        returnKeyType={"Search"}
-        fetchDetails={true}
-        enablePoweredByContainer={false}
-        minLength={2}
-        placeholder='Where From?'
-        nearbyPlacesAPI='GooglePlacesSearch'
-        debounce={400}
+        <GooglePlacesAutocomplete
+          styles={{
+            container: {
+              flex: 0
+            },
+            textInput: {
+              fontSize: 18
+            }
+          }}
+          query={{
+            key: GOOGLE_MAPS_APIKEY,
+            language: "en"
+          }}
+          onPress={(data, details = null) => {
+            dispatch(
+              setOrigin({
+                location: details.geometry.location,
+                description: data.description
+              })
+            )
+            setDestination(null)
+            console.log(details.geometry.location);
+            console.log(details.description);
+            
+          }}
+          returnKeyType={"Search"}
+          fetchDetails={true}
+          enablePoweredByContainer={false}
+          minLength={2}
+          placeholder='Where From?'
+          nearbyPlacesAPI='GooglePlacesSearch'
+          debounce={400}
 
         />
 
