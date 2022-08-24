@@ -20,7 +20,6 @@ const Map = () => {
                 longitudeDelta: 0.005,
             }}
         >
-
             {
                 origin?.location && (
                     <Marker

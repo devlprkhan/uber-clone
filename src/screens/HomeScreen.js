@@ -32,30 +32,25 @@ const HomeScreen = () => {
               fontSize: 18
             }
           }}
-          query={{
-            key: GOOGLE_MAPS_APIKEY,
-            language: "en"
-          }}
           onPress={(data, details = null) => {
-            dispatch(
-              setOrigin({
+            dispatch(setOrigin({
                 location: details.geometry.location,
-                description: data.description
-              })
-            )
-            setDestination(null)
-            console.log(details.geometry.location);
-            console.log(details.description);
-            
+                description: data.description,
+              }))
+
+            dispatch(setDestination(null))
           }}
-          returnKeyType={"Search"}
           fetchDetails={true}
+          returnKeyType={"Search"}
           enablePoweredByContainer={false}
           minLength={2}
+          query={{
+            key: GOOGLE_MAPS_APIKEY,
+            language: "en",
+          }}
           placeholder='Where From?'
           nearbyPlacesAPI='GooglePlacesSearch'
           debounce={400}
-
         />
 
         <NavOptions />
