@@ -31,6 +31,7 @@ const NavOptions = () => {
         <FlatList
             data={data}
             horizontal
+            scrollEnabled={false}
             showsHorizontalScrollIndicator={false}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
@@ -39,7 +40,7 @@ const NavOptions = () => {
                     onPress={() => navigation.navigate(item.screen)}
                     disabled={!origin}
                 >
-                    <View style={{`${!origin && {opacity: 20}}`}}>
+                    <View style={!origin && {opacity: 0.5}}>
                         <Image
                             source={{ uri: item.image }}
                             style={{ height: 120, width: 120, resizeMode: "contain" }}
