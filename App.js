@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { KeyboardAvoidingView, Platform } from 'react-native';
 import { TailwindProvider } from "tailwindcss-react-native";
 
 // Navigation
@@ -21,22 +21,19 @@ export default function App() {
     <NavigationContainer>
       <Provider store={store}>
         <TailwindProvider>
+          <KeyboardAvoidingView 
+          style={{flex: 1}}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          >
             <Stack.Navigator screenOptions={{headerShown: false}}>
               <Stack.Screen name="Home" component={HomeScreen} />
               <Stack.Screen name="MapScreen" component={MapScreen} />
               <Stack.Screen name="EatsScreen" component={EatScreen} />
             </Stack.Navigator>
+          </KeyboardAvoidingView>
         </TailwindProvider>
       </Provider>
     </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
